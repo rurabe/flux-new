@@ -1,0 +1,9 @@
+node_modules
+bower_components
+browser-bundle.js
+npm-debug.log
+*~
+lib/*
+public/*
+!lib/.gitkeep
+.DS_Store
