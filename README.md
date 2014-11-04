@@ -1,3 +1,12 @@
 # Flux-new
 
-An attempt to get to `rails new` for a Flux app.
+Get up and running with a new Flux app.
+
+## Install
+
+```bash
+git clone git@github.com:rurabe/flux-new.git
+npm install
+gulp
+node server
+```
