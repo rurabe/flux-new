@@ -1,6 +1,8 @@
 var express = require('express');
 var Server = express();
 
+Server.set('port', (process.env.PORT || 5000))
+
 Server.get('/',function(request,response){
   response.sendFile('/public/index.html', { root: __dirname });
 });
@@ -14,4 +16,4 @@ Server.get('*',function(request,response){
   response.redirect('/');
 });
 
-Server.listen(3000);
+Server.listen(Server.get('port'));
