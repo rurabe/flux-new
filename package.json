@@ -2,6 +2,7 @@
   "name": "flux-new",
   "version": "0.0.1",
   "description": "Boilerplate for a new flux app",
+  "repository": "https://github.com/rurabe/flux-new",
   "author": "Ryan Urabe",
   "license": "ISC",
   "devDependencies": {
@@ -10,8 +11,8 @@
     "gulp-concat": "^2.4.1",
     "react": "^0.12.0",
     "reactify": "^0.15.2",
-    "browser-sync": "^1.6.3",
-    "gulp-sass": "^1.2.2"
+    "gulp-sass": "^1.2.2",
+    "gulp-plumber": "^0.6.6"
   },
   "dependencies":{
     "express": "^4.10.1"
