@@ -15,6 +15,8 @@ gulp.task('browserify', function() {
 gulp.task('copy', function() {
   gulp.src('src/index.html')
     .pipe(gulp.dest('public'));
+  gulp.src('src/img/**/*.*')
+    .pipe(gulp.dest('public/img'));
 });
 
 gulp.task('sass',function(){
