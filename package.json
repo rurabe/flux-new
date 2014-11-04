@@ -5,7 +5,8 @@
   "repository": "https://github.com/rurabe/flux-new",
   "author": "Ryan Urabe",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "express": "^4.10.1",
     "gulp": "^3.8.9",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.4.1",
@@ -14,7 +15,8 @@
     "gulp-sass": "^1.2.2",
     "gulp-plumber": "^0.6.6"
   },
-  "dependencies":{
-    "express": "^4.10.1"
+  "scripts": {
+    "start": "node server",
+    "postinstall": "node gulp"
   }
 }
