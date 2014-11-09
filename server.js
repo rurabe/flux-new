@@ -16,4 +16,8 @@ Server.get('*',function(request,response){
   response.redirect('/');
 });
 
-Server.listen(Server.get('port'));
+
+console.log('Express Server starting up on port '+Server.get('port')+"...")
+Server.listen(Server.get('port'),function(){
+  console.log('Express Server up on port '+Server.get('port'))
+});
