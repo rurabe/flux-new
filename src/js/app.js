@@ -4,7 +4,9 @@ var Logo = require('./components/logo');
 var App = React.createClass({
   render: function(){
     return(
-      <Logo />
+      <div>
+        <Logo />
+      </div>
     )
   }
 });

@@ -4,12 +4,16 @@ var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 
+jsLibs = ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'];
 gulp.task('browserify', function() {
   gulp.src('src/js/app.js')
     .pipe(plumber())
     .pipe(browserify({transform: 'reactify'}))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('public/js'));
+  gulp.src(jsLibs)
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest('public/js'))
 });
 
 gulp.task('copy', function() {
