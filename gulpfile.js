@@ -3,26 +3,18 @@ var browserify = require('gulp-browserify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
+var del = require('del');
 
-jsLibs = ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'];
-gulp.task('browserify', function() {
+gulp.task('clean',function(cb){
+  del(['public/**/*.*'],cb);
+});
+
+gulp.task('reactify', function() {
   gulp.src('src/js/app.js')
     .pipe(plumber())
     .pipe(browserify({transform: 'reactify'}))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('public/js'));
-  gulp.src(jsLibs)
-    .pipe(concat('lib.js'))
-    .pipe(gulp.dest('public/js'))
-});
-
-gulp.task('copy', function() {
-  gulp.src('src/index.html')
-    .pipe(plumber())
-    .pipe(gulp.dest('public'));
-  gulp.src('src/img/**/*.*')
-    .pipe(plumber())
-    .pipe(gulp.dest('public/img'));
 });
 
 gulp.task('sass',function(){
@@ -32,7 +24,45 @@ gulp.task('sass',function(){
     .pipe(gulp.dest('public/css'))
 });
 
-gulp.task('default',['browserify', 'copy', 'sass']);
+gulp.task('copy',['copyjs','copycss','copyimg','copyfonts'],function() {
+  gulp.src('src/index.html')
+    .pipe(plumber())
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('copyjs',function(){
+  var js = [
+    'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+  ]
+  gulp.src(js)
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest('public/js'))
+});
+
+gulp.task('copycss',function(){
+  var css = [
+    'static/css/**/*.*'
+  ]
+  gulp.src(css)
+    .pipe(concat('lib.css'))
+    .pipe(gulp.dest('public/css'))
+});
+
+gulp.task('copyimg',function(){
+  gulp.src('static/img/**/*.*')
+    .pipe(gulp.dest('public/img'));
+});
+
+gulp.task('copyfonts',function(){
+  fonts = [
+    'node_modules/font-awesome/fonts/*.*',
+    'static/fonts/**/*.*'
+  ]
+  gulp.src(fonts)
+    .pipe(gulp.dest('public/fonts'));
+});
+
+gulp.task('default',['reactify','sass','copy']);
 
 gulp.task('watch', function() {
   gulp.watch('src/**/*.*', ['default']);

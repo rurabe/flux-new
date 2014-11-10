@@ -10,6 +10,7 @@ Server.get('/',function(request,response){
 Server.use('/assets/js' ,express.static(__dirname + '/public/js'));
 Server.use('/assets/css',express.static(__dirname + '/public/css'));
 Server.use('/assets/img',express.static(__dirname + '/public/img'));
+Server.use('/assets/fonts',express.static(__dirname + '/public/fonts'));
 
 
 Server.get('*',function(request,response){
