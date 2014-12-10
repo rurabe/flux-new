@@ -1,5 +1,7 @@
 var gulp = require('gulp');
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
+var transform = require('vinyl-transform');
+var reactify = require('reactify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
@@ -9,13 +11,19 @@ gulp.task('clean',function(cb){
   del(['public/**/*.*'],cb);
 });
 
-gulp.task('reactify', function() {
-  gulp.src('src/js/app.js')
-    .pipe(plumber())
-    .pipe(browserify({transform: 'reactify'}))
+gulp.task('reactify',function(){
+  var browserified = transform(function(filename){
+    var b = browserify(filename);
+    b.transform(reactify)
+    return b.bundle();
+  });
+
+  return gulp.src(['src/js/app.js'])
+    .pipe(browserified)
     .pipe(concat('app.js'))
     .pipe(gulp.dest('public/js'));
-});
+
+})
 
 gulp.task('sass',function(){
   gulp.src('src/css/app.sass')
@@ -32,7 +40,8 @@ gulp.task('copy',['copyjs','copycss','copyimg','copyfonts'],function() {
 
 gulp.task('copyjs',function(){
   var js = [
-    'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js'
   ]
   gulp.src(js)
     .pipe(concat('lib.js'))
