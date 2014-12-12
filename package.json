@@ -19,7 +19,9 @@
     "merge-stream": "^0.1.6",
     "react": "^0.12.0",
     "reactify": "^0.15.2",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "flux": "^2.0.1",
+    "object-assign": "^2.0.0"
   },
   "scripts": {
     "start": "node server"

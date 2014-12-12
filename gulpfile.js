@@ -7,6 +7,13 @@ var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var del = require('del');
 
+var pu = {
+  handleError: function (err) {
+    console.log(err);
+    this.emit('end');
+  }
+};
+
 gulp.task('clean',function(cb){
   del(['public/**/*.*'],cb);
 });
@@ -19,6 +26,7 @@ gulp.task('reactify',function(){
   });
 
   return gulp.src(['src/js/app.js'])
+    .pipe(plumber(pu))
     .pipe(browserified)
     .pipe(concat('app.js'))
     .pipe(gulp.dest('public/js'));

@@ -1,5 +1,5 @@
 var React = require('react');
-var Logo = require('./components/logo');
+var Logo = require('./components/Logo');
 
 var App = React.createClass({
   render: function(){
